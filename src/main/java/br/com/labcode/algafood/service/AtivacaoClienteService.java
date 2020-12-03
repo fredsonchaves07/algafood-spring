@@ -6,6 +6,7 @@ import br.com.labcode.algafood.notificacao.Notificador;
 import br.com.labcode.algafood.notificacao.TipoDoNotificador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -29,9 +30,15 @@ public class AtivacaoClienteService {
         System.out.println("DESTROY");
     }
 
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
+
     public void ativar(Cliente cliente){
         cliente.ativarCliente();
 
-        notificador.notificar(cliente, "Seu cadastro no sistema está ativo");
+        // Informar o container que o cliente está ativo neste momento
+        // A informação é baseada em eventos
+        // Baixo aclomento e alta coesão
+        eventPublisher.publishEvent(new ClienteAtivadoEvent(cliente));
     }
 }
