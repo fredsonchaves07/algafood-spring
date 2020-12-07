@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-@TipoDoNotificador(NivelUrgencia.URGENTE)
 @Component
 public class NotificadorEmail implements Notificador {
     @Autowired
