@@ -1,19 +1,18 @@
 package br.com.labcode.algafood.domain.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
 public class Restaurante {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
 
-    @Column(name = "taxa_frete")
+    @Column(name = "tx_frete")
     private BigDecimal taxaFrete;
 
     public Long getId() {
