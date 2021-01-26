@@ -2,6 +2,7 @@ package br.com.labcode.algafood.jpa;
 
 import br.com.labcode.algafood.domain.model.Cozinha;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,8 +18,12 @@ public class CadastroCozinha {
 
     public List<Cozinha> listar() {
         // Utiliza a linguagem de consulta da JPA -> JPQL
-        TypedQuery<Cozinha> query = manager.createQuery("from Cozinha", Cozinha.class);
+        return manager.createQuery("from cozinha", Cozinha.class)
+                .getResultList();
+    }
 
-        return query.getResultList();
+    @Transactional
+    public Cozinha adicionar(Cozinha cozinha){
+        return manager.merge(cozinha);
     }
 }
