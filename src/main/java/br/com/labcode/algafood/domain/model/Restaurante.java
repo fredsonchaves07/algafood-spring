@@ -12,6 +12,8 @@ import java.util.Objects;
 @Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 public class Restaurante {
     @EqualsAndHashCode.Include
     @Id
