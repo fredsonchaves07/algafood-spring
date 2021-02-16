@@ -20,12 +20,14 @@ public class Restaurante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nome;
 
-    @Column(name = "tx_frete")
+    @Column(name = "tx_frete", nullable = false)
     private BigDecimal taxaFrete;
 
     // Relacionamento de muitos para um
     @ManyToOne
+    @JoinColumn(name="cozinha_id", nullable = false)
     private Cozinha cozinha;
 }
